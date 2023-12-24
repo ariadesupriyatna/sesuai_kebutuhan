@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 60%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <title>Add Keywords to URL</title>
+</head>
+<body>
+
+<div class="container">
+    <label for="urlInput">Enter URL:</label>
+    <input type="text" id="urlInput" placeholder="https://example.com">
+    <br>
+    <label for="wordListInput">Enter Wordlist:</label>
+    <input type="text" id="wordListInput" placeholder="word1, word2, word3">
+    <br>
+    <button onclick="addKeywords()">Add Keywords</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    function addKeywords() {
+    const urlInput = document.getElementById('urlInput');
+    const wordListInput = document.getElementById('wordListInput');
+    const result = document.getElementById('result');
+
+    if (urlInput.value.trim() !== '' && wordListInput.value.trim() !== '') {
+        const words = wordListInput.value.split(',').map(word => word.trim());
+
+        // Create an array of modified URLs
+        const modifiedURLs = words.map(word => `${urlInput.value}/${word}`);
+        
+        // Display modified URLs
+        result.textContent = modifiedURLs.join('\n');
+    } else {
+        result.textContent = "Please enter a URL and a wordlist.";
+    }
+}
+</script>
+
+</body>
+</html>
